@@ -1,0 +1,177 @@
+/*------------RESET------------*/
+* {margin:0;box-sizing: border-box;}
+ul {list-style: none;padding: 0;}
+img, figure {max-width: 100%;display: block;}
+a {text-decoration: none;}
+
+/*------------TAG STYLES------------*/
+body {
+    background-color: #fcf4e7;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    overflow:hidden;
+}
+
+h1 {margin-bottom: 10px;}
+
+/*------------SECTION ERROR 404------------*/
+.error {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+svg {
+    width: 20%;
+    margin-bottom: 10px;
+}
+
+.error__text {
+    max-width: 800px;
+    border-top: 8px solid #ff4500;
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin:auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.error__text-h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: rgb(4, 88, 88);
+    text-align: center;
+    font-size: 40px;
+}
+
+/*------------BOTÓN (?)------------*/
+.ask { /*-DUDA: ¿por qué este elemento se esconde? Al posicionarlo aparecía un scroll vertical que he quitado desde el body pero se va escondiendo poco a poco-*/
+    border-radius: 100%;
+    box-shadow: 0 0 5px 3px rgba(14, 223, 14, 0.486);
+    cursor: pointer;
+    margin: 15px;
+    animation: ASKROTATION 1s infinite alternate;
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+/*------------MENSAJE POPUP------------*/
+.firstmessage { /*-DUDA: quiero que cuando se vea en pantallas grandes, el mensaje se comprima y quede en un parrafito, no que se extienda a lo largo de dos lineas, pero si le pongo medidas concretas se me desborda el contenido cuando minimizo pantalla-*/
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    opacity: 0;
+    transition: 1s;
+    /*-DUDA: cómo podría centrar el mensaje popup en pantalla por encima del resto de elementos sin usar este método?-*/
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ask:hover ~ .firstmessage {opacity: 1;}
+.firstmessage__p {font-size: 18px;}
+
+/*------------SOCIAL MEDIA MENU------------*/
+.socialmedia {
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+}
+
+.socialmedia__li {
+    margin: 15px;
+    transition: 2s;
+}
+
+.socialmedia__li:hover {
+    animation: ASKROTATION 2s alternate;
+    transform: scale(1.5);
+}
+
+.socialmedia__li > a > img {width: 50px;
+}
+
+/*------HABSULLA------*/
+.habsulla {
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 100%;
+    background-color: #0edf7d;
+    box-shadow: 0 0 5px 6px rgba(14, 223, 14, 0.486);
+    padding-top: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    display: none;
+}
+
+.habsulla > img {
+    display: block;
+    width: 100%;
+    height: 60vh;
+    object-fit:cover;
+    object-position:center;
+}
+
+/*
+.habsulla > img {
+    display: block;
+    max-width: 150px;
+    width: 100%;
+    height: 40vh;
+    object-fit:cover;
+    object-position:center;
+    margin:auto;
+}*/
+
+/*------ANIMACION EN LAS LETRAS------*/
+/*-transiciones-*/
+.e-letter, .r1-letter, .r2-letter, #Trazado_10, .o-letter, .r3-letter, .zero-letter {transition: 1s;}
+.four-a-letter, .four-b-letter, .habsulla {transition:2s}
+/*-animaciones-*/ 
+/*-DUDA: Algunas letras solo funcionan cuando paso por una parte concreta de la figura -*/
+.e-letter:hover {transform: rotate(180deg);}
+.r1-letter:hover {transform: translateX(160px);}
+.r1-letter:hover > #Trazado_10 {fill: #29b45e;}
+.r2-letter:hover {transform:translateY(100px)}
+.r2-letter:hover > #Trazado_10 {fill: orangered; transition: 1s;}
+.o-letter:hover {transform: skewX(25deg);}
+.r3-letter:hover {transform:scaleX(2) translateX(100px)}
+.zero-letter:hover {transform: rotate(90deg) scaleY(3);}
+.four-a-letter:hover {opacity: 0;}
+.four-a-letter:hover ~ .four-b-letter {opacity: 0;}
+.four-b-letter:hover ~ .habsulla  {display: block;}
+
+/*------ANIMACIONES KEYFRAME------*/
+@keyframes ASKROTATION {
+    0% {transform:rotate3d(0deg)}
+    25% {transform: rotate(-15deg);}
+    50% {transform: rotate(0deg);}
+    75% {transform: rotate(15deg);}
+    100% {transform: rotate(0deg);}
+}
+
+
+/*------MEDIA QUERIES - Solo me ha hecho falta la del smartphone porque las demas vistas funcionan como quiero------*/
+
+/*--SMARTPHONE--*/
+@media (max-width:480px) {
+
+body {overflow-y:auto;}
+.error__text-h2 {font-size: 20px;}
+.error__text {padding-left: 0; padding-right: 0;}
+svg {width: 50%;}
+.socialmedia {transform:scale(0.8);}
+.habsulla {max-width: 200px; max-height: 200px;}
+
+} /*--END SMARTPHONE--*/
